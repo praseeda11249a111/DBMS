@@ -1,0 +1,176 @@
+Enter user-name: A111@db2021
+Enter password:
+
+
+SQL> create table college1(
+  2  stuid number,
+  3  name varchar2(10),
+  4  age number,
+  5  email varchar2(30),
+  6  dept varchar2(10)
+  7  );
+
+Table created.
+
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER(38)
+ STUNAME                                   NOT NULL VARCHAR2(10)
+ AGE                                                NUMBER(38)
+ GENDER                                             CHAR(1)
+ EMAIL                                              VARCHAR2(20)
+ DEPTID                                             NUMBER(38)
+
+SQL> desc college
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER
+ EMAIL                                              VARCHAR2(30)
+ DEPT                                               VARCHAR2(10)
+
+
+SQL> alter table college1 ADD CONSTRAINT pk_college1 PRIMARY KEY(stuid);
+
+Table altered.
+
+SQL> alter table college1 ADD CONSTRAINT uq_college1 UNIQUE(email);
+
+Table altered.
+
+SQL> desc college1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER
+ EMAIL                                              VARCHAR2(30)
+ DEPT                                               VARCHAR2(10)
+
+SQL> alter table college1 ADD CONSTRAINT chk_age CHECK(age<=18);
+
+Table altered.
+
+
+SQL> alter table college1 MODIFY dept DEFAULT 'CSE';
+
+Table altered.
+
+SQL> create table deptart (
+  2  deptid number,
+  3  deptname varchar2(10)
+  4  );
+
+Table created.
+                                                           
+
+
+SQL> desc college1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER
+ EMAIL                                              VARCHAR2(30)
+ DEPT                                               VARCHAR2(10)
+
+
+
+SQL> desc deptart
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTID                                             NUMBER
+ DEPTNAME                                           VARCHAR2(10)
+
+SQL> alter table deptart ADD CONSTRAINT pk_deptart PRIMARY KEY(deptid);
+
+Table altered.
+
+SQL> alter table college1 ADD deptid NUMBER;
+
+Table altered.
+
+SQL> alter table college1 ADD CONSTRAINT FK_COLLEGE1_DEPT FOREIGN KEY(deptid) REFERENCES deptart(deptid);
+
+Table altered.
+
+SQL> insert into dept values(01,'CSE');
+
+1 row created.
+
+SQL> insert into dept values(02,'ECE');
+
+1 row created.
+
+SQL> insert into dept values(03,'cse');
+
+1 row created.
+
+
+
+SQL> insert into deptart values(01,'CSE');
+
+1 row created.
+
+SQL> insert into deptart values(02,'ECE');
+
+1 row created.
+
+SQL> insert into deptart values(03,'cse');
+
+1 row created.
+
+SQL> select* from deptart
+  2  select* from deptart
+  3
+SQL> select* from deptart;
+
+    DEPTID DEPTNAME
+---------- ----------
+         1 CSE
+         2 ECE
+         3 cse
+
+SQL> insert into college1 values(987, 'yws',06,'yws@gmail.com','cse',1);
+
+1 row created.
+
+
+SQL> insert into college1 values(654, 'hgf',07,'hgf@gmail.com','ece',2);
+
+1 row created.
+
+SQL> insert into college1 values(321, 'lkj',08,'lkj@gmail.com','ece',3);
+
+1 row created.
+
+SQL> select* from deptart
+  2
+SQL> select* from deptart;
+
+    DEPTID DEPTNAME
+---------- ----------
+         1 CSE
+         2 ECE
+         3 cse
+
+SQL> select* from college1;
+
+     STUID NAME              AGE EMAIL                          DEPT
+---------- ---------- ---------- ------------------------------ ----------
+    DEPTID
+----------
+         1 yws                 6 yws@gmail.com                  cse
+         1
+
+         2 hgf                7 hgf@gmail.com                  ece
+         2
+
+         3 lkj                 8 lkj@gmail.com                  ece
+         3
+
+
+SQL>
+

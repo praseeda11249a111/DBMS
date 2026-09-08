@@ -1,0 +1,238 @@
+Enter user-name: A111@db2021
+Enter password:
+
+SQL> create table student8(
+  2  stuid int PRIMARY KEY,
+  3  name varchar(10),
+  4  reg_no varchar(10),
+  5  department varchar(10)
+  6  );
+
+Table created.
+
+SQL> desc student8
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ REG_NO                                             VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+
+SQL> insert into student8 values(01,'praseeda','A111','CSE');
+
+1 row created.
+
+SQL> select from student8
+  2
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+         1 praseeda   A111       CSE
+
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+         1 praseeda   A111       CSE
+
+SQL> create table course(
+  2  courseid int PRIMARY KEY,
+  3  stuid int,
+  4  FOREIGN KEY (stuid) REFERENCES student8(stuid)
+  5  );
+
+Table created.
+
+SQL> desc student8
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(10)
+ REG_NO                                             VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+
+SQL> insert into student8 values('&stuid','&name','&reg_no','&department');
+Enter value for stuid: 2
+Enter value for name: kamakshi
+Enter value for reg_no: 1000
+Enter value for department: cse
+old   1: insert into student8 values('&stuid','&name','&reg_no','&department')
+new   1: insert into student8 values('2','kamashi','1000','cse')
+
+1 row created.
+
+SQL> /
+Enter value for stuid: 3
+Enter value for name: venky
+Enter value for reg_no: 1001
+Enter value for department: mech
+old   1: insert into student8 values('&stuid','&name','&reg_no','&department')
+new   1: insert into student8 values('3','venky','1001','mech')
+
+1 row created.
+
+SQL> /
+Enter value for stuid: 4
+Enter value for name: durga
+Enter value for reg_no: 5678
+Enter value for department: bcom
+old   1: insert into student8 values('&stuid','&name','&reg_no','&department')
+new   1: insert into student8 values('4','durga','5678','bcom')
+
+1 row created.
+
+SQL> /
+Enter value for stuid: 5
+Enter value for name: ram
+Enter value for reg_no: 1973
+Enter value for department: mech
+old   1: insert into student8 values('&stuid','&name','&reg_no','&department')
+new   1: insert into student8 values('5','ram','1973','mech')
+
+1 row created.
+
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+         1 praseeda   A111       CSE
+         2 kamakshi   1000       CSE
+         3 venky      1001       mech
+         4 durga      5678       bcom
+         5 ram        1973       mech
+
+SQL> create table c
+  2
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+         1 praseeda   A111       CSE
+         2 kamakshi   1000       CSE
+         3 venky      1001       mech
+         4 durga      5678       bcom
+         5 ram        1973       mech
+SQL> insert into course values(1,1);
+
+1 row created.
+
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+        1 praseeda   A111       CSE
+        2 kamakshi   1000       CSE
+        3 venky      1001       mech
+        4 durga      5678       bcom
+        5 ram        1973       mech  
+
+SQL> create table student9(
+  2  id number PRIMARY KEY,
+  3  gender char(1) DEFAULT 'F'
+  4  );
+
+Table created.
+
+SQL> alter table  student8 modify department DEFAULT 'CSE';
+
+Table altered.
+
+SQL> insert into student8 (stuid, name , reg
+  2
+SQL> insert into student8 (stuid, name , reg_no) values(800, 'lalitha','a753');
+
+1 row created.
+
+SQL> select* from student8;
+
+     STUID NAME       REG_NO     DEPARTMENT
+---------- ---------- ---------- ----------
+        1 praseeda   A111       CSE
+        2 kamakshi   1000       CSE
+        3 venky      1001       mech
+        4 durga      5678       bcom
+        5 ram        1973       mech  
+       800  lalitha     a753      CSE
+
+6 rows selected.
+
+SQL> create table dept(
+  2  deptid number(5) PRIMARY KEY,
+  3  deptname varchar(10) NOT NULL
+  4  );
+
+Table created.
+SQL> create table student(
+  2  stuid int PRIMARY KEY,
+  3  stuname varchar2(10) NOT NULL,
+  4  age int CHECK (age>18),
+  5  gender char(1) DEFAULT 'F',
+  6  email varchar(20) UNIQUE,
+  7  deptid int,
+  8  FOREIGN KEY (deptid) REFERENCES dept(deptid)
+  9  );
+
+Table created.
+
+SQL> desc dept
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTID                                    NOT NULL NUMBER(5)
+ DEPTNAME                                  NOT NULL VARCHAR2(10)
+SQL> desc student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER(38)
+ STUNAME                                   NOT NULL VARCHAR2(10)
+ AGE                                                NUMBER(38)
+ GENDER                                             CHAR(1)
+ EMAIL                                              VARCHAR2(20)
+ DEPTID                                             NUMBER(38)
+
+SQL> insert into dept (deptid,deptname) values (02, 'civil');
+
+1 row created.
+
+SQL> select* from dept;
+
+    DEPTID DEPTNAME
+---------- ----------
+         2 civil
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUID                                     NOT NULL NUMBER(38)
+ STUNAME                                   NOT NULL VARCHAR2(10)
+ AGE                                                NUMBER(38)
+ GENDER                                             CHAR(1)
+ EMAIL                                              VARCHAR2(20)
+ DEPTID                                             NUMBER(38)
+
+SQL> INSERT INTO student
+  2  (stuid , stuname, age, gender, email, deptid)
+  3  VALUES
+  4  ('&stuid','&stuname','&age','&gender','&email','&deptid'
+  5  );
+Enter value for stuid: 8
+Enter value for stuname: vishnu
+Enter value for age: 25
+Enter value for gender: m
+Enter value for email: 987654321@gmail.com
+Enter value for deptid: 2
+old   4: ('&stuid','&stuname','&age','&gender','&email','&deptid'
+new   4: ('8','vishnu','25','m','987654321@gmail.com','2'
+
+1 row created.
+
+SQL> select* from student
+  2
+SQL> select* from student;
+
+     STUID STUNAME           AGE G EMAIL                    DEPTID
+---------- ---------- ---------- - -------------------- ----------
+         8  vishnu           25   m 987654321@gmail.com            2
+
+SQL>
+

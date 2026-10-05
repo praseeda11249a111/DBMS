@@ -1,0 +1,70 @@
+
+Enter user-name: A111@db2021
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - Production
+
+SQL> CREATE TABLE EMPLOYEE
+  2  (
+  3   EMP_ID NUMBER(5) PRIMARY KEY,
+  4   EMP_NAME VARCHAR2(30),
+  5   SALARY NUMBER(8)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO EMPLOYEE VALUES (120,'priya',35000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES (121,'ram',40000);
+
+1 row created.
+
+SQL> GRANT SELECT
+  2  ON EMPLOYEE
+  3  TO SCOTT;
+
+Grant succeeded.
+
+SQL> GRANT SELECT, INSERT, UPDATE
+  2  ON EMPLOYEE
+  3  TO SCOTT;
+
+Grant succeeded.
+
+SQL> REVOKE INSERT
+  2  ON EMPLOYEE
+  3  FROM SCOTT;
+
+Revoke succeeded.
+
+SQL> INSERT INTO EMPLOYEE VALUES (122,'raj',45000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES (123,'rama',42000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES (124,'amu',38000);
+
+1 row created.
+
+SQL> ROLLBACK TO SP1;
+ROLLBACK TO SP1
+*
+ERROR at line 1:
+ORA-01086: savepoint 'SP1' never established in this session or is invalid
+
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_ID EMP_NAME                           SALARY
+---------- ------------------------------ ----------
+       120 priya                               35000
+       121 ram                                 40000
+       122 raj                                 45000
+       123 rama                                42000
+       124 amu                                 38000
